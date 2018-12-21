@@ -1,0 +1,16 @@
+<div class="list-group">
+  <button class="btn btn-success mb-2">Add New</button>
+    <p class="list-group-item list-group-item-action active lead">
+      Recipes:
+    </p>
+    <a href="#" class="list-group-item list-group-item-action" *ngFor="let recipe of recipes">
+      <div class="media">
+        <img [src]="recipe.imagePath" class="mr-3" alt="..." id="recipe-image-list">
+        <div class="media-body">
+          <h5 class="mt-0">{{ recipe.name }}</h5>
+          {{ recipe.description }}
+        </div>
+      </div>
+    </a>
+  </div>
+<app-recipe-item></app-recipe-item>
