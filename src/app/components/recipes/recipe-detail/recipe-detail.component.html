@@ -11,7 +11,7 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                   <a class="dropdown-item" (click)="addIngridientsToSL()">To shopping list</a>
-                  <a class="dropdown-item" href="#">Edit</a>
+                  <a class="dropdown-item" (click)="editRecipeModal()">Edit</a>
                   <a class="dropdown-item" href="#">Delete</a>
                 </div>
               </div>
@@ -25,5 +25,5 @@
       </div>  
 </ng-container>
 <ng-template #elseTemplate>
-<p class="lead text-center">No recipe selected</p>  
+<p class="lead text-center">Recipe not found</p>  
 </ng-template>

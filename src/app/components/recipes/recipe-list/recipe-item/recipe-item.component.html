@@ -1,9 +1,9 @@
-<a (click)="onItemSelected()" class="list-group-item list-group-item-action">
-    <div class="media">
-      <img [src]="recipe.imagePath" class="mr-3" alt="..." id="recipe-image-list">
-      <div class="media-body">
-        <h5 class="mt-0">{{ recipe.name }}</h5>
-        {{ recipe.description }}
-      </div>
+<a [routerLink]="[recipeIndex]" routerLinkActive="active"  class="list-group-item list-group-item-action">
+  <div class="media">
+    <img [src]="recipe.imagePath" class="mr-3" alt="..." id="recipe-image-list">
+    <div class="media-body">
+      <h5 class="mt-0">{{ recipe.name }}</h5>
+      {{ recipe.description }}
     </div>
-  </a>
+  </div>
+</a>

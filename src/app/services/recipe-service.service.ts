@@ -6,7 +6,8 @@ import { Recipe } from '../models/recipe.model';
   providedIn: 'root'
 })
 export class RecipeServiceService {
-  recipeSelected = new EventEmitter<Recipe>();
+  // recipeSelected = new EventEmitter<Recipe>();
+  onEditRecipe = new EventEmitter<String>();
   private recipes: Recipe[] = [
     new Recipe('Pasta', 'Full vegan persto-pasta',
                'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/2/4/1/RX-FNM_030111-Lighten-Up-012_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382539856907.jpeg',
@@ -21,5 +22,8 @@ export class RecipeServiceService {
 
   getRecipes() {
     return this.recipes;
+  }
+  getRecipe(index: number) {
+    return this.recipes[index];
   }
 }

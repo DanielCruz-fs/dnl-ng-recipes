@@ -8,12 +8,15 @@ import { RecipeServiceService } from 'src/app/services/recipe-service.service';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent implements OnInit {
-  recipe: Recipe;
+  modalTitle: string;
   constructor(private recipeService: RecipeServiceService) { }
 
   ngOnInit() {
-    this.recipeService.recipeSelected.subscribe( (data: Recipe) => {
-      this.recipe = data;
+    // this.recipeService.recipeSelected.subscribe( (data: Recipe) => {
+    //   this.recipe = data;
+    // });
+    this.recipeService.onEditRecipe.subscribe( (data: string) => {
+      this.modalTitle = data;
     });
   }
 

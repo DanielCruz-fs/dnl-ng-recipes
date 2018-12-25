@@ -2,11 +2,17 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RecipeDetailComponent } from './components/recipes/recipe-detail/recipe-detail.component';
+import { UnknownRecipeComponent } from './components/recipes/unknown-recipe/unknown-recipe.component';
 
 const routes: Routes = [
-  { path: 'recipe', component: RecipesComponent },
-  { path: 'shopping', component: ShoppingListComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'recipe'}
+  { path: 'recipes', component: RecipesComponent, children: [
+    { path: '', component: UnknownRecipeComponent },
+    { path: ':id', component: RecipeDetailComponent }
+
+  ] },
+  { path: 'shopping-list', component: ShoppingListComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'recipes'}
 ];
 
 @NgModule({
