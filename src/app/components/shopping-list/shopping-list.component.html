@@ -4,7 +4,9 @@
     <hr>
     <p class="lead">List Of Ingredients</p>
     <ul class="list-group">
-      <li *ngFor="let ingredient of ingridients" class="list-group-item d-flex justify-content-between align-items-center">
+      <li *ngFor="let ingredient of ingridients; let i = index" 
+          (click)="onEditItem(i)"
+          class="list-group-item d-flex justify-content-between align-items-center">
         {{ ingredient.name }}
         <span class="badge badge-primary badge-pill">{{ ingredient.amount }}</span>
       </li>
