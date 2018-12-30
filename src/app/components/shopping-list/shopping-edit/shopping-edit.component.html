@@ -10,9 +10,11 @@
              ngModel required>
     </div>
   </div>
-  <div class="col mt-1">
-    <button type="submit" class="btn btn-primary m-1" [disabled]="!listForm.valid">Add</button>
-    <button type="button" class="btn btn-danger m-1">Delete</button>
-    <button type="button" class="btn btn-warning m-1">Clear</button>
+  <div class="col mt-1 text-center">
+    <button type="submit" class="btn btn-primary m-1" [disabled]="!listForm.valid">
+      {{ editMode ? 'Update' : 'Add' }}
+    </button>
+    <button *ngIf="editMode" type="button" class="btn btn-danger m-1" (click)="onDelete()">Delete</button>
+    <button type="button" class="btn btn-warning m-1" (click)="onClear()">Clear</button>
   </div>
 </form>

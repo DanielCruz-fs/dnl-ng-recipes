@@ -16,10 +16,24 @@ export class ShoppingListService {
   getIngridients() {
     return this.ingridients;
   }
+
+  getIngridient(index: number) {
+    return this.ingridients[index];
+  }
+
   addIngridient(object: Ingridient) {
     this.ingridients.push(object);
   }
+
   addRecipeIngridients(ingArray: Ingridient[]) {
     this.ingridients.push.apply(this.ingridients, ingArray);
+  }
+
+  updateIngridient(index: number, newIngridient: Ingridient) {
+    this.ingridients[index] = newIngridient;
+  }
+
+  deleteIngridient(index: number) {
+    this.ingridients.splice(index, 1);
   }
 }
