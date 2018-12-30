@@ -27,7 +27,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
         name: this.editedIngridient.name,
         amount: this.editedIngridient.amount
       });
-    })
+    });
   }
 
   createIngridient(listForm: NgForm) {
