@@ -10,14 +10,13 @@ declare var $: any;
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [];
-  @Output() onCreateRecipe = new EventEmitter<string>();
   constructor(private recipeService: RecipeServiceService) { }
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
   }
   createRecipeModal() {
-    $('#recipeModal').modal('show')
-    this.onCreateRecipe.emit('New Recipe!');
+    $('#recipeModal').modal('show');
+    this.recipeService.editStatus.emit(false);
   }
 }

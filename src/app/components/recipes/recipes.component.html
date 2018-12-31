@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-6">
-    <app-recipe-list (onCreateRecipe)="modalTitle = $event"></app-recipe-list>
+    <app-recipe-list></app-recipe-list>
   </div>
   <div class="col-md-6">
     <router-outlet></router-outlet>
   </div>
 </div>
-<app-recipe-modal [modalTitle]="modalTitle"></app-recipe-modal>
+<app-recipe-modal></app-recipe-modal>

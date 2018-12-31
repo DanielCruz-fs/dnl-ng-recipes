@@ -7,7 +7,8 @@ import { Recipe } from '../models/recipe.model';
 })
 export class RecipeServiceService {
   // recipeSelected = new EventEmitter<Recipe>();
-  onEditRecipe = new EventEmitter<String>();
+  onEditRecipe = new EventEmitter<number>();
+  editStatus = new EventEmitter<boolean>();
   private recipes: Recipe[] = [
     new Recipe('Pasta', 'Full vegan persto-pasta',
                'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/2/4/1/RX-FNM_030111-Lighten-Up-012_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382539856907.jpeg',

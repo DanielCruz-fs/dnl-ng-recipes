@@ -28,6 +28,6 @@ export class RecipeDetailComponent implements OnInit {
   }
   editRecipeModal() {
     $('#recipeModal').modal('show');
-    this.recipeService.onEditRecipe.emit('Edit recipe!');
+    this.recipeService.onEditRecipe.emit(this.recipeId);
   }
 }
