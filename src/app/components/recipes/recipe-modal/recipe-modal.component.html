@@ -16,10 +16,11 @@
           </div>
           <div class="form-group">
             <label for="image-url">Image URL</label>
-            <input formControlName="imagePath" type="text" class="form-control" id="image-url" placeholder="Image URL">
+            <input formControlName="imagePath" type="text" class="form-control" id="image-url"
+             placeholder="Image URL" #imageRecPre>
           </div>
-          <div class="form-group" *ngIf="preImageView">
-            <img [src]="preImageView" class="img-fluid" alt="Responsive image">
+          <div class="form-group" *ngIf="imageRecPre.value">
+            <img [src]="imageRecPre.value" class="img-fluid" alt="Pre-view image">
           </div>
           <div class="form-group">
             <label for="description">Description</label>

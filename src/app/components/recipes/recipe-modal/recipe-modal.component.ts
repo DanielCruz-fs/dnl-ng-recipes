@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeServiceService } from 'src/app/services/recipe-service.service';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+declare var $: any;
 
 @Component({
   selector: 'app-recipe-modal',
@@ -12,7 +13,6 @@ export class RecipeModalComponent implements OnInit {
   editMode: boolean = false;
   recipeIndex: number;
   recipeForm: FormGroup;
-  preImageView: string;
 
   ngOnInit() {
     this.initForm();
@@ -25,7 +25,6 @@ export class RecipeModalComponent implements OnInit {
     this.recipeService.editStatus.subscribe((data: boolean) => {
       this.editMode = data;
       this.recipeIndex = null;
-      this.preImageView = null;
       this.recipeForm.reset();
     });
   }
@@ -40,7 +39,6 @@ export class RecipeModalComponent implements OnInit {
       const currentRecipe = this.recipeService.getRecipe(this.recipeIndex);
       recipeName = currentRecipe.name;
       recipeImagePath = currentRecipe.imagePath;
-      this.preImageView = currentRecipe.imagePath;
       recipeDescription = currentRecipe.description;
       if (currentRecipe['ingredients']) {
         for (const ing of currentRecipe.ingredients) {
@@ -65,7 +63,12 @@ export class RecipeModalComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.recipeForm);
+    if (this.editMode) {
+      this.recipeService.updateRecipe(this.recipeIndex, this.recipeForm.value);
+    } else {
+      this.recipeService.addRecipe(this.recipeForm.value);
+    }
+    $('#recipeModal').modal('hide');
   }
 
   getControls() {
