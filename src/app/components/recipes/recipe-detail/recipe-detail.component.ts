@@ -22,9 +22,9 @@ export class RecipeDetailComponent implements OnInit {
       this.recipe = this.recipeService.getRecipe(this.recipeId);
     });
   }
-  addIngridientsToSL() {
-    this.shoppinglistService.addRecipeIngridients(this.recipe.ingrients);
-    console.log(this.recipe.ingrients);
+  addIngredientsToSL() {
+    this.shoppinglistService.addRecipeIngredients(this.recipe.ingredients);
+    console.log(this.recipe.ingredients);
   }
   editRecipeModal() {
     $('#recipeModal').modal('show');

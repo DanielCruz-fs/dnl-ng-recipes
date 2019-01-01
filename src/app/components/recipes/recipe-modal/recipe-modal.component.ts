@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeServiceService } from 'src/app/services/recipe-service.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-modal',
@@ -12,6 +12,7 @@ export class RecipeModalComponent implements OnInit {
   editMode: boolean = false;
   recipeIndex: number;
   recipeForm: FormGroup;
+  preImageView: string;
 
   ngOnInit() {
     this.initForm();
@@ -24,6 +25,7 @@ export class RecipeModalComponent implements OnInit {
     this.recipeService.editStatus.subscribe((data: boolean) => {
       this.editMode = data;
       this.recipeIndex = null;
+      this.preImageView = null;
       this.recipeForm.reset();
     });
   }
@@ -32,22 +34,53 @@ export class RecipeModalComponent implements OnInit {
     let recipeName = '';
     let recipeImagePath = '';
     let recipeDescription = '';
+    let recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
       const currentRecipe = this.recipeService.getRecipe(this.recipeIndex);
       recipeName = currentRecipe.name;
       recipeImagePath = currentRecipe.imagePath;
+      this.preImageView = currentRecipe.imagePath;
       recipeDescription = currentRecipe.description;
+      if (currentRecipe['ingredients']) {
+        for (const ing of currentRecipe.ingredients) {
+          recipeIngredients.push(new FormGroup({
+            name: new FormControl(ing.name, Validators.required),
+            amount: new FormControl(ing.amount, [
+              Validators.required,
+              Validators.pattern('^[1-9]+[0-9]*$')
+            ])
+          }));
+        }  
+      }
     }
 
     this.recipeForm = new FormGroup({
-      name: new FormControl(recipeName),
-      imagePath: new FormControl(recipeImagePath),
-      description: new FormControl(recipeDescription),
+      name: new FormControl(recipeName, Validators.required),
+      imagePath: new FormControl(recipeImagePath, Validators.required),
+      description: new FormControl(recipeDescription, Validators.required),
+      ingredients: recipeIngredients
     });
+    console.log(this.recipeForm);
   }
 
   onSubmit() {
     console.log(this.recipeForm);
+  }
+
+  getControls() {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
+  }
+
+  onAddIng() {
+    (<FormArray>this.recipeForm.get('ingredients')).push(
+      new FormGroup({
+        name: new FormControl(null, Validators.required),
+        amount: new FormControl(null, [
+          Validators.required,
+          Validators.pattern('^[1-9]+[0-9]*$')
+        ])
+      })
+    );
   }
 }

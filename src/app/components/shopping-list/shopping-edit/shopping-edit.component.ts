@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ShoppingListService } from 'src/app/services/shopping-list.service';
-import { Ingridient } from 'src/app/models/ingredient.model';
+import { Ingredient } from 'src/app/models/ingredient.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
@@ -14,7 +14,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   editMode: boolean = false;
   indexItemToEdit: number;
-  editedIngridient: Ingridient;
+  editedIngredient: Ingredient;
 
   constructor(private shoppinglistService: ShoppingListService) { }
 
@@ -22,20 +22,20 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.subscription = this.shoppinglistService.startEditing.subscribe((index: number) => {
       this.editMode = true;
       this.indexItemToEdit = index;
-      this.editedIngridient = this.shoppinglistService.getIngridient(index);
+      this.editedIngredient = this.shoppinglistService.getIngredient(index);
       this.slForm.setValue({
-        name: this.editedIngridient.name,
-        amount: this.editedIngridient.amount
+        name: this.editedIngredient.name,
+        amount: this.editedIngredient.amount
       });
     });
   }
 
-  createIngridient(listForm: NgForm) {
+  createIngredient(listForm: NgForm) {
     console.log(listForm);
     if (this.editMode) {
-      this.shoppinglistService.updateIngridient(this.indexItemToEdit , listForm.value);
+      this.shoppinglistService.updateIngredient(this.indexItemToEdit , listForm.value);
     } else {
-      this.shoppinglistService.addIngridient(listForm.value);
+      this.shoppinglistService.addIngredient(listForm.value);
     }
     this.editMode = false;
     listForm.reset();
@@ -51,7 +51,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
 
   onDelete() {
-    this.shoppinglistService.deleteIngridient(this.indexItemToEdit);
+    this.shoppinglistService.deleteIngredient(this.indexItemToEdit);
     this.onClear();
   }
 }
