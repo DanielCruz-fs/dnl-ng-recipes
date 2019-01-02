@@ -21,6 +21,10 @@ export class RecipeDetailComponent implements OnInit {
       this.recipeId = +params.id;
       this.recipe = this.recipeService.getRecipe(this.recipeId);
     });
+    /**this does the trick to update the recipe in details view */
+    this.recipeService.newRecipeUpdatedEvent.subscribe((index: number) => {
+      this.recipe = this.recipeService.getRecipe(index);
+    });
   }
 
   addIngredientsToSL() {

@@ -1,6 +1,7 @@
 import { Ingredient } from './../models/ingredient.model';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class RecipeServiceService {
   // recipeSelected = new EventEmitter<Recipe>();
   onEditRecipe = new EventEmitter<number>();
   editStatus = new EventEmitter<boolean>();
+  newRecipeUpdatedEvent = new Subject<number>();
   private recipes: Recipe[] = [
     new Recipe('Pasta', 'Full vegan persto-pasta',
                'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/2/4/1/RX-FNM_030111-Lighten-Up-012_s4x3.jpg.rend.hgtvcom.616.462.suffix/1382539856907.jpeg',

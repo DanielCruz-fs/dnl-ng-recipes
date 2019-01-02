@@ -65,6 +65,7 @@ export class RecipeModalComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       this.recipeService.updateRecipe(this.recipeIndex, this.recipeForm.value);
+      this.recipeService.newRecipeUpdatedEvent.next(this.recipeIndex);
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
     }
