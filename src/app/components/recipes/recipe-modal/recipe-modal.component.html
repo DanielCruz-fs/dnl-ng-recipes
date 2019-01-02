@@ -36,7 +36,9 @@
                 <input type="number" class="form-control" formControlName="amount">
               </div>
               <div class="col-3">
-                <button type="button" class="btn btn-block btn-danger"><i class="fas fa-minus-circle"></i></button>
+                <button type="button" class="btn btn-block btn-danger" (click)="onDeleteIng(i)">
+                  <i class="fas fa-minus-circle"></i>
+                </button>
               </div>
             </div>
           </div>

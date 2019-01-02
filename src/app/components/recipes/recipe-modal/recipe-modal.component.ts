@@ -26,6 +26,8 @@ export class RecipeModalComponent implements OnInit {
       this.editMode = data;
       this.recipeIndex = null;
       this.recipeForm.reset();
+      /**fixing the array of inputs for new ingridients*/
+      this.initForm();
     });
   }
   
@@ -86,5 +88,9 @@ export class RecipeModalComponent implements OnInit {
         ])
       })
     );
+  }
+
+  onDeleteIng(index: number) {
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 }
