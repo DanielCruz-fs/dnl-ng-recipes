@@ -26,7 +26,7 @@ export class RecipeModalComponent implements OnInit {
       this.editMode = data;
       this.recipeIndex = null;
       this.recipeForm.reset();
-      /**fixing the array of inputs for new ingridients*/
+      /**fixing the form-array of inputs for new ingridients*/
       this.initForm();
     });
   }
